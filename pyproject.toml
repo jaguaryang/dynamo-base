@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "DynamoBase"
+version = "0.1.2"
+authors = [
+  { name="Jaguar", email="jack.v.yang@gmail.com" },
+]
+description = "A Json Model that is the easiest way to query DynamoDB."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jaguaryang/dynamo-base"
+"Bug Tracker" = "https://github.com/jaguaryang/dynamo-base/issues"
