@@ -3,14 +3,18 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "DynamoBase"
-version = "0.1.3"
+name = "dynamobase"
+version = "0.1.5"
 authors = [
   { name="Jaguar", email="jack.v.yang@gmail.com" },
 ]
 description = "A Json Model that is the easiest way to query DynamoDB."
 readme = "README.md"
 requires-python = ">=3.7"
+dependencies = [
+    "boto3==1.24.68",
+    "simplejson==3.17.6"
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
