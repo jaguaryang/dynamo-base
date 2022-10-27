@@ -100,9 +100,9 @@ class MyModel(DynamoBase):
 
 ### parameters
 
-| Name  | Type | Example       |
-| ----- | ---- | ------------- |
-| query | dict | {"\_id": 123} |
+| Name  | Type | Example     |
+| ----- | ---- | ----------- |
+| query | dict | {"id": 123} |
 
 ### return: Dict or None
 
@@ -139,9 +139,9 @@ class MyModel(DynamoBase):
 
 ### parameters
 
-| Name | Type | Example       |
-| ---- | ---- | ------------- |
-| Item | dict | {"\_id": 123} |
+| Name | Type | Example     |
+| ---- | ---- | ----------- |
+| Item | dict | {"id": 123} |
 
 ## update_item
 
@@ -149,16 +149,16 @@ class MyModel(DynamoBase):
 
 | Name  | Type | Example                 |
 | ----- | ---- | ----------------------- |
-| query | dict | {"\_id": 123}           |
+| query | dict | {"id": 123}             |
 | doc   | dict | {"field": "some value"} |
 
 ## delete_item
 
 ### parameters
 
-| Name  | Type | Example       |
-| ----- | ---- | ------------- |
-| query | dict | {"\_id": 123} |
+| Name  | Type | Example     |
+| ----- | ---- | ----------- |
+| query | dict | {"id": 123} |
 
 # DynamoDB docs
 
