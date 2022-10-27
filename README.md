@@ -14,6 +14,7 @@ pip install DynamoBase simplejson boto3
 
 ```
 from DynamoBase import DynamoBase
+
 DynamoBase.table_region = "ap-southeast-2"
 DynamoBase.table_name = "users"
 
