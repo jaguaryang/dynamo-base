@@ -5,7 +5,7 @@ A Json Model that is the easiest way to query DynamoDB.
 # Install
 
 ```
-pip install dynamobase 
+pip install dynamobase
 ```
 
 # Use
@@ -40,7 +40,8 @@ print(user)
 
 ## Recommendation
 
-1. Create the corresponding model for each table. 
+1. Create the corresponding model for each table.
+
 ```
 from DynamoBase import DynamoBase
 
@@ -51,12 +52,14 @@ class User(DynamoBase):
 ```
 
 2. Query database
+
 ```
 user = User.get_first(query={"first_name": "Jackson"})
 print(user)
 ```
 
 3. (Optional) You can also create a base-model to configure common properties, such as region and credentials
+
 ```
 from DynamoBase import DynamoBase
 
@@ -73,6 +76,7 @@ class User(MyModel):
 ```
 
 4. (Optional) Extend your classes to meet your business needs
+
 ```
 from DynamoBase import DynamoBase
 
@@ -89,27 +93,44 @@ class MyModel(DynamoBase):
         ...
 ```
 
-# Parameters
+# APIs
 
-The parameters supported by ```get_items``` and ```get_first``` are as follows:
+## get_item
 
-| Name | Type |
-| --- | --- |
-|IndexName | String |
-|Select | String |
-|AttributesToGet | String |
-|Limit | String |
-|ConsistentRead | String |
-|KeyConditions | String |
-|QueryFilter | String |
-|ConditionalOperator | String |
-|ScanIndexForward | String |
-|ExclusiveStartKey | String |
-|ReturnConsumedCapacity | String |
-|ProjectionExpression | String |
-|FilterExpression | String |
-|KeyConditionExpression | String |
-|ExpressionAttributeNames | String |
-|ExpressionAttributeValues | String |
+### parameters
+
+| Name  | Type | Example       |
+| ----- | ---- | ------------- |
+| query | dict | {"_id": 123} |
+
+### return
+
+Json or None
+
+## get_items
+
+### parameters
+
+The parameters supported by `get_items` and `get_first` are as follows:
+
+| Name                   | Type   |
+| ---------------------- | ------ |
+| IndexName              | String |
+| Select                 | String |
+| AttributesToGet        | String |
+| Limit                  | String |
+| ConsistentRead         | String |
+| KeyConditions          | String |
+| QueryFilter            | String |
+| ConditionalOperator    | String |
+| ScanIndexForward       | String |
+| ExclusiveStartKey      | String |
+| ReturnConsumedCapacity | String |
+| ProjectionExpression   | String |
+| FilterExpression       | String |
 
 [DynamoDB Query Parameters](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.query)
+
+### return
+
+None or List<Json>

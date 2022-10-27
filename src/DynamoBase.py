@@ -22,6 +22,9 @@ class DynamoBase:
         params = kwargs.copy()
         params.pop('query', None)
         params.pop('TableName', None)
+        params.pop('KeyConditionExpression', None)
+        params.pop('ExpressionAttributeNames', None)
+        params.pop('ExpressionAttributeValues', None)
         response = cls._table().query(
             **params,
             KeyConditionExpression=" and ".join(expression["Expression"]),
