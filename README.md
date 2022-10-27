@@ -5,7 +5,7 @@ A Json Model that is the easiest way to query DynamoDB.
 # Install
 
 ```
-pip install DynamoBase
+pip install DynamoBase simplejson boto3
 ```
 
 # Use
