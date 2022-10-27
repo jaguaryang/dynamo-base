@@ -5,6 +5,7 @@ from boto3.dynamodb.conditions import Key
 class DynamoBase:
     table_region = "us-east-1"
     table_name = None
+    session = boto3.Session()
 
     @classmethod
     def get_item(cls, **kwargs):
@@ -20,11 +21,11 @@ class DynamoBase:
         query = kwargs["query"]
         expression = cls._expression(query)
         params = kwargs.copy()
-        params.pop('query', None)
-        params.pop('TableName', None)
-        params.pop('KeyConditionExpression', None)
-        params.pop('ExpressionAttributeNames', None)
-        params.pop('ExpressionAttributeValues', None)
+        params.pop("query", None)
+        params.pop("TableName", None)
+        params.pop("KeyConditionExpression", None)
+        params.pop("ExpressionAttributeNames", None)
+        params.pop("ExpressionAttributeValues", None)
         response = cls._table().query(
             **params,
             KeyConditionExpression=" and ".join(expression["Expression"]),
@@ -66,7 +67,7 @@ class DynamoBase:
 
     @classmethod
     def _table(cls):
-        dynamodb = boto3.resource("dynamodb", region_name=cls.table_region)
+        dynamodb = cls.session.resource("dynamodb", region_name=cls.table_region)
         tb = dynamodb.Table(cls.table_name)
         return tb
 

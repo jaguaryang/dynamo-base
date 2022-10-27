@@ -17,6 +17,7 @@ from DynamoBase import DynamoBase
 
 DynamoBase.table_region = "ap-southeast-2"
 DynamoBase.table_name = "users"
+DynamoBase.session = ... # if you need specific settings like aws profile, credentials etc.
 
 user = DynamoBase.get_item(query={"first_name": "Jackson"})
 print(user)
