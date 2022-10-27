@@ -39,7 +39,7 @@ print(user)
 
 ## Recommendation
 
-1. Create models for each table. 
+1. Create the corresponding model for each table. 
 ```
 from DynamoBase import DynamoBase
 
