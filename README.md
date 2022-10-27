@@ -103,7 +103,7 @@ class MyModel(DynamoBase):
 | ----- | ---- | ------------- |
 | query | dict | {"\_id": 123} |
 
-### return: Json or None
+### return: Dict or None
 
 ## get_items
 
@@ -113,6 +113,7 @@ The parameters supported by `get_items` and `get_first` are as follows:
 
 | Name                   | Type                           |
 | ---------------------- | ------------------------------ |
+| query                  | dict                           |
 | IndexName              | String                         |
 | Select                 | String                         |
 | AttributesToGet        | List                           |
@@ -127,7 +128,7 @@ The parameters supported by `get_items` and `get_first` are as follows:
 | ProjectionExpression   | String                         |
 | FilterExpression       | boto3.dynamodb.conditions.Attr |
 
-### return: List<Json> or None
+### return: List<Dict> or None
 
 # DynamoDB docs
 
