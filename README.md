@@ -91,6 +91,25 @@ class MyModel(DynamoBase):
 
 # Parameters
 
-Supports all DynamoDB query properties:
+The parameters supported by ```get_items``` and ```get_first``` are as follows:
+
+| Name | Type |
+| --- | --- |
+|IndexName | String |
+|Select | String |
+|AttributesToGet | String |
+|Limit | String |
+|ConsistentRead | String |
+|KeyConditions | String |
+|QueryFilter | String |
+|ConditionalOperator | String |
+|ScanIndexForward | String |
+|ExclusiveStartKey | String |
+|ReturnConsumedCapacity | String |
+|ProjectionExpression | String |
+|FilterExpression | String |
+|KeyConditionExpression | String |
+|ExpressionAttributeNames | String |
+|ExpressionAttributeValues | String |
 
 [DynamoDB Query Parameters](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.query)
