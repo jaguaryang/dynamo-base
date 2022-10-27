@@ -108,9 +108,7 @@ class MyModel(DynamoBase):
 
 ## get_items
 
-### parameters
-
-The parameters supported by `get_items` and `get_first` are as follows:
+### parameters: The parameters supported by `get_items` and `get_first` are as follows:
 
 | Name                   | Type                           |
 | ---------------------- | ------------------------------ |
@@ -130,6 +128,37 @@ The parameters supported by `get_items` and `get_first` are as follows:
 | FilterExpression       | boto3.dynamodb.conditions.Attr |
 
 ### return: List<Dict> or None
+
+## get_first
+
+### parameters: same as get_items
+
+### return: same as get_item
+
+## put_item
+
+### parameters
+
+| Name | Type | Example       |
+| ---- | ---- | ------------- |
+| Item | dict | {"\_id": 123} |
+
+## update_item
+
+### parameters
+
+| Name  | Type | Example                 |
+| ----- | ---- | ----------------------- |
+| query | dict | {"\_id": 123}           |
+| doc   | dict | {"field": "some value"} |
+
+## delete_item
+
+### parameters
+
+| Name  | Type | Example       |
+| ----- | ---- | ------------- |
+| query | dict | {"\_id": 123} |
 
 # DynamoDB docs
 
