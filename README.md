@@ -22,21 +22,19 @@ DynamoBase.session = ... # if you need specific settings like aws profile, crede
 user = DynamoBase.get_item(query={"first_name": "Jackson"})
 print(user)
 
+# Doesn't need parameter IndexName when query primary key, GSI does
 user = DynamoBase.get_items(query={"first_name": "Jackson"}, IndexName='ix_name')
 print(user)
 
-# Doesn't need parameter IndexName when query primary key, GSI does
+# Same parameter format with get_items
 user = DynamoBase.get_first(query={"first_name": "Jackson"})
 print(user)
 
-user = DynamoBase.put_item(Item={"first_name": "Jackson"})
-print(user)
+DynamoBase.put_item(Item={"first_name": "Jackson"})
 
-user = DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
-print(user)
+DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
 
-user = DynamoBase.delete_item(query={"first_name": "Jackson"})
-print(user)
+DynamoBase.delete_item(query={"first_name": "Jackson"})
 ```
 
 ## Recommendation
