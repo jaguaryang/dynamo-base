@@ -19,17 +19,10 @@ class DynamoBase:
     def get_items(cls, **kwargs):
         query = kwargs["query"]
         expression = cls._expression(query)
-        ScanIndexForward = kwargs.get("ScanIndexForward", None)
-        IndexName = kwargs.get("IndexName", None)
-        Limit = kwargs.get("Limit", None)
+        params = kwargs.copy()
+        params.pop('query', None)
         response = cls._table().query(
-            **(
-                cls._none_to_default(
-                    IndexName=IndexName,
-                    Limit=Limit,
-                    ScanIndexForward=ScanIndexForward,
-                )
-            ),
+            **params,
             KeyConditionExpression=" and ".join(expression["Expression"]),
             ExpressionAttributeNames=expression["ExpressionAttributeNames"],
             ExpressionAttributeValues=expression["ExpressionAttributeValues"],
@@ -87,8 +80,3 @@ class DynamoBase:
             "ExpressionAttributeNames": ExpressionAttributeNames,
             "ExpressionAttributeValues": ExpressionAttributeValues,
         }
-
-    # Using default value when parameters are None
-    @classmethod
-    def _none_to_default(cls, **kwargs):
-        return {k: v for k, v in kwargs.items() if v is not None}
