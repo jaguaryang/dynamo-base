@@ -101,11 +101,9 @@ class MyModel(DynamoBase):
 
 | Name  | Type | Example       |
 | ----- | ---- | ------------- |
-| query | dict | {"_id": 123} |
+| query | dict | {"\_id": 123} |
 
-### return
-
-Json or None
+### return: Json or None
 
 ## get_items
 
@@ -113,24 +111,24 @@ Json or None
 
 The parameters supported by `get_items` and `get_first` are as follows:
 
-| Name                   | Type   |
-| ---------------------- | ------ |
-| IndexName              | String |
-| Select                 | String |
-| AttributesToGet        | String |
-| Limit                  | String |
-| ConsistentRead         | String |
-| KeyConditions          | String |
-| QueryFilter            | String |
-| ConditionalOperator    | String |
-| ScanIndexForward       | String |
-| ExclusiveStartKey      | String |
-| ReturnConsumedCapacity | String |
-| ProjectionExpression   | String |
-| FilterExpression       | String |
+| Name                   | Type                           |
+| ---------------------- | ------------------------------ |
+| IndexName              | String                         |
+| Select                 | String                         |
+| AttributesToGet        | List                           |
+| Limit                  | int                            |
+| ConsistentRead         | String                         |
+| KeyConditions          | dict                           |
+| QueryFilter            | dict                           |
+| ConditionalOperator    | String                         |
+| ScanIndexForward       | boolean                        |
+| ExclusiveStartKey      | dict                           |
+| ReturnConsumedCapacity | String                         |
+| ProjectionExpression   | String                         |
+| FilterExpression       | boto3.dynamodb.conditions.Attr |
+
+### return: List<Json> or None
+
+# DynamoDB docs
 
 [DynamoDB Query Parameters](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html#DynamoDB.Client.query)
-
-### return
-
-None or List<Json>
