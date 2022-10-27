@@ -2,13 +2,13 @@
 
 A Json Model that is the easiest way to query DynamoDB.
 
-# install
+# Install
 
 ```
 pip install DynamoBase
 ```
 
-# use
+# Use
 
 ## Basic try
 
@@ -17,7 +17,23 @@ from DynamoBase import DynamoBase
 DynamoBase.table_region = "ap-southeast-2"
 DynamoBase.table_name = "users"
 
+user = DynamoBase.get_item(query={"first_name": "Jackson"})
+print(user)
+
+user = DynamoBase.get_items(query={"first_name": "Jackson"}, IndexName='ix_name')
+print(user)
+
+# Doesn't need parameter IndexName when query primary key, GSI does
 user = DynamoBase.get_first(query={"first_name": "Jackson"})
+print(user)
+
+user = DynamoBase.put_item(Item={"first_name": "Jackson"})
+print(user)
+
+user = DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
+print(user)
+
+user = DynamoBase.delete_item(query={"first_name": "Jackson"})
 print(user)
 ```
 
