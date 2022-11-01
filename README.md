@@ -115,7 +115,7 @@ class MyModel(DynamoBase):
 | Name                   | Type                           | description |
 | ---------------------- | ------------------------------ | ----------- |
 | query                  | dict                           | query can be primary key or GSI columns |
-| IndexName              | String                         | required if query is GSI |
+| IndexName              | String                         | required if query is GSI or LSI |
 | Select                 | String                         |
 | AttributesToGet        | List                           |
 | Limit                  | int                            |
