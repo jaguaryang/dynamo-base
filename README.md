@@ -31,13 +31,13 @@ print(user)
 user = DynamoBase.get_first(query={"first_name": "Jackson"}, IndexName='ix_name')
 print(user)
 
-# insert a item
+# insert an item
 DynamoBase.put_item(Item={"first_name": "Jackson"})
 
-# update a item, doc is part or all of item
+# update an item, doc is part or all of item
 DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
 
-# delete a item
+# delete an item
 DynamoBase.delete_item(query={"first_name": "Jackson"})
 ```
 
