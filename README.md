@@ -1,6 +1,6 @@
 # DynamoBase
 
-A Json Model that is the easiest way to query DynamoDB.
+A lightweight JSON model that simplifies DynamoDB's obscure query operations. It retains all original parameters and supports DynamoDB versions and future upgrades.
 
 # Install
 
