@@ -83,7 +83,7 @@ class User(BaseModel):
 ```
 from DynamoBase import DynamoBase
 
-class BaseModel(DynamoBase):
+class User(DynamoBase):
     table_region = "ap-southeast-2"
     table_name = "users"
 
