@@ -34,7 +34,7 @@ print(user)
 # insert a item
 DynamoBase.put_item(Item={"first_name": "Jackson"})
 
-# update a item
+# update a item, doc is part or all of item
 DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
 
 # delete a item
@@ -102,9 +102,9 @@ class MyModel(DynamoBase):
 
 ### parameters
 
-| Name  | Type | Example     |
-| ----- | ---- | ----------- |
-| query | dict | {"id": 123} |
+| Name  | Type | Example     | description |
+| ----- | ---- | ----------- | ----------- |
+| query | dict | {"id": 123} | query must be primary key (and sort key) |
 
 ### return: Dict or None
 
@@ -112,10 +112,10 @@ class MyModel(DynamoBase):
 
 ### parameters: The parameters supported by `get_items` and `get_first` are as follows:
 
-| Name                   | Type                           |
-| ---------------------- | ------------------------------ |
-| query                  | dict                           |
-| IndexName              | String                         |
+| Name                   | Type                           | description |
+| ---------------------- | ------------------------------ | ----------- |
+| query                  | dict                           | query can be primary key or GSI columns |
+| IndexName              | String                         | required if query is GSI |
 | Select                 | String                         |
 | AttributesToGet        | List                           |
 | Limit                  | int                            |
@@ -149,18 +149,18 @@ class MyModel(DynamoBase):
 
 ### parameters
 
-| Name  | Type | Example                 |
-| ----- | ---- | ----------------------- |
-| query | dict | {"id": 123}             |
-| doc   | dict | {"field": "some value"} |
+| Name  | Type | Example     | description |
+| ----- | ---- | ----------- | ----------- |
+| query | dict | {"id": 123} | query must be primary key (and sort key) |
+| doc   | dict | {"field": "some value"} | -- |
 
 ## delete_item
 
 ### parameters
 
-| Name  | Type | Example     |
-| ----- | ---- | ----------- |
-| query | dict | {"id": 123} |
+| Name  | Type | Example     | description |
+| ----- | ---- | ----------- | ----------- |
+| query | dict | {"id": 123} | query must be primary key (and sort key) |
 
 # DynamoDB docs
 
