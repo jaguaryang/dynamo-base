@@ -19,21 +19,25 @@ DynamoBase.table_region = "ap-southeast-2"
 DynamoBase.table_name = "users"
 DynamoBase.session = ... # if you need specific settings like aws profile, credentials etc.
 
+# get a single item
 user = DynamoBase.get_item(query={"first_name": "Jackson"})
 print(user)
 
-# Doesn't need parameter IndexName when query primary key, GSI does
+# get a list of items, IndexName is optional
 user = DynamoBase.get_items(query={"first_name": "Jackson"}, IndexName='ix_name')
 print(user)
 
-# Same parameter format with get_items
-user = DynamoBase.get_first(query={"first_name": "Jackson"})
+# get the first item, IndexName is optional
+user = DynamoBase.get_first(query={"first_name": "Jackson"}, IndexName='ix_name')
 print(user)
 
+# insert a item
 DynamoBase.put_item(Item={"first_name": "Jackson"})
 
+# update a item
 DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
 
+# delete a item
 DynamoBase.delete_item(query={"first_name": "Jackson"})
 ```
 
@@ -131,7 +135,7 @@ class MyModel(DynamoBase):
 
 ### parameters: same as get_items
 
-### return: same as get_item
+### return: Dict or None
 
 ## put_item
 
