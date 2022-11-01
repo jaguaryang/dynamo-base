@@ -66,16 +66,16 @@ print(user)
 ```
 from DynamoBase import DynamoBase
 
-class MyModel(DynamoBase):
+class BaseModel(DynamoBase):
     table_region = "ap-southeast-2"
-    table_name = "lt_feedbacks"
+
 ```
 
 ```
-from MyModel import MyModel
+from BaseModel import BaseModel
 
-class User(MyModel):
-    pass
+class User(BaseModel):
+    table_name = "users"
 ```
 
 4. (Optional) Extend your classes to meet your business needs
@@ -83,9 +83,9 @@ class User(MyModel):
 ```
 from DynamoBase import DynamoBase
 
-class MyModel(DynamoBase):
+class BaseModel(DynamoBase):
     table_region = "ap-southeast-2"
-    table_name = "lt_feedbacks"
+    table_name = "users"
 
     @classmethod
     def get_item(cls, **kwargs):
