@@ -34,8 +34,8 @@ print(user)
 # insert an item
 DynamoBase.put_item(Item={"first_name": "Jackson"})
 
-# update an item, doc is part or all of item
-DynamoBase.update_item(query={"first_name": "Jackson"}, doc={'field': 12345})
+# update an item, Item is part or all of item
+DynamoBase.update_item(query={"first_name": "Jackson"}, Item={'field': 12345})
 
 # delete an item
 DynamoBase.delete_item(query={"first_name": "Jackson"})
@@ -152,7 +152,7 @@ class User(DynamoBase):
 | Name  | Type | Example     | description |
 | ----- | ---- | ----------- | ----------- |
 | query | dict | {"id": 123} | query must be primary key (and sort key) |
-| doc   | dict | {"field": "some value"} | -- |
+| Item  | dict | {"field": "some value"} | -- |
 
 ## delete_item
 

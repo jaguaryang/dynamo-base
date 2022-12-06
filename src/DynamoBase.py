@@ -49,8 +49,8 @@ class DynamoBase:
     @classmethod
     def update_item(cls, **kwargs):
         query = kwargs["query"]
-        doc = kwargs["doc"]
-        expression = cls._expression(doc)
+        Item = kwargs["Item"]
+        expression = cls._expression(Item)
         response = cls._table().update_item(
             Key=query,
             UpdateExpression="SET " + (", ".join(expression["Expression"])),
