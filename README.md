@@ -41,42 +41,6 @@ DynamoBase.update_item(query={"first_name": "Jackson"}, Item={'field': 12345})
 DynamoBase.delete_item(query={"first_name": "Jackson"})
 ```
 
-```
-res = Article.get_item(query={"_id": "hH2ZZTgQqzgK888zrkG8ui"})
-print(1, res)
-res = Article.get_items(
-    IndexName="ix_category_id",
-    query={"category_id": 1, "created_at": {">": 1}},
-    ProjectionExpression="title",
-    ScanIndexForward=True,
-)
-print(2, res)
-res = Article.get_items(
-    IndexName="ix_test",
-    query={"_id": "ewTx3gannQUinM7ECjpQad", "url": {"begins_with": "1"}},
-    ProjectionExpression="title",
-    ScanIndexForward=True,
-)
-print(3, res)
-res = Article.get_first(
-    IndexName="ix_category_id",
-    query={"category_id": 1, "created_at": {"between": [1670367685098, 1670367663116]}},
-    ProjectionExpression="title",
-    ScanIndexForward=False,
-)
-print(4, res)
-res = Article.put_item(Item={"_id": "123", "data": {"a": 123}})
-print(5, res)
-res = Article.update_item(query={"_id": "123"}, Item={"data": {"a": 456}})
-print(6, res)
-res = Article.delete_item(query={"_id": "123"})
-print(7, res)
-```
-
-```
-All get operations support: = | <= | < | >= | > | begins_with | between
-```
-
 ## Recommendation
 
 1. Create the corresponding model for each table.
@@ -132,14 +96,50 @@ class User(DynamoBase):
         ...
 ```
 
+5. More example
+
+```
+res = Article.get_item(query={"_id": "hH2ZZTgQqzgK888zrkG8ui"})
+print(1, res)
+res = Article.get_items(
+    IndexName="ix_category_id",
+    query={"category_id": 1, "created_at": {">": 1}},
+    ProjectionExpression="title",
+    ScanIndexForward=True,
+)
+print(2, res)
+res = Article.get_items(
+    IndexName="ix_test",
+    query={"_id": "ewTx3gannQUinM7ECjpQad", "url": {"begins_with": "1"}},
+    ProjectionExpression="title",
+    ScanIndexForward=True,
+)
+print(3, res)
+res = Article.get_first(
+    IndexName="ix_category_id",
+    query={"category_id": 1, "created_at": {"between": [1670367685098, 1670367663116]}},
+    ProjectionExpression="title",
+    ScanIndexForward=False,
+)
+print(4, res)
+res = Article.put_item(Item={"_id": "123", "data": {"a": 123}})
+print(5, res)
+res = Article.update_item(query={"_id": "123"}, Item={"data": {"a": 456}})
+print(6, res)
+res = Article.delete_item(query={"_id": "123"})
+print(7, res)
+```
+
 # APIs
+
+All "GET" operations support: = | <= | < | >= | > | begins_with | between
 
 ## get_item
 
 ### parameters
 
-| Name  | Type | Example     | description |
-| ----- | ---- | ----------- | ----------- |
+| Name  | Type | Example     | description                              |
+| ----- | ---- | ----------- | ---------------------------------------- |
 | query | dict | {"id": 123} | query must be primary key (and sort key) |
 
 ### return: Dict or None
@@ -148,10 +148,10 @@ class User(DynamoBase):
 
 ### parameters: The parameters supported by `get_items` and `get_first` are as follows:
 
-| Name                   | Type                           | description |
-| ---------------------- | ------------------------------ | ----------- |
+| Name                   | Type                           | description                             |
+| ---------------------- | ------------------------------ | --------------------------------------- |
 | query                  | dict                           | query can be primary key or GSI columns |
-| IndexName              | String                         | required if query is GSI or LSI |
+| IndexName              | String                         | required if query is GSI or LSI         |
 | Select                 | String                         |
 | AttributesToGet        | List                           |
 | Limit                  | int                            |
@@ -185,17 +185,17 @@ class User(DynamoBase):
 
 ### parameters
 
-| Name  | Type | Example     | description |
-| ----- | ---- | ----------- | ----------- |
-| query | dict | {"id": 123} | query must be primary key (and sort key) |
-| Item  | dict | {"field": "some value"} | -- |
+| Name  | Type | Example                 | description                              |
+| ----- | ---- | ----------------------- | ---------------------------------------- |
+| query | dict | {"id": 123}             | query must be primary key (and sort key) |
+| Item  | dict | {"field": "some value"} | --                                       |
 
 ## delete_item
 
 ### parameters
 
-| Name  | Type | Example     | description |
-| ----- | ---- | ----------- | ----------- |
+| Name  | Type | Example     | description                              |
+| ----- | ---- | ----------- | ---------------------------------------- |
 | query | dict | {"id": 123} | query must be primary key (and sort key) |
 
 # DynamoDB docs
