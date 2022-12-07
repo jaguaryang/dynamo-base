@@ -19,7 +19,7 @@ class DynamoBase:
     @classmethod
     def get_items(cls, **kwargs):
         query = kwargs["query"]
-        expression = cls._expression(query)
+        expression = cls._KeyConditionExpression(query)
         params = kwargs.copy()
         params.pop("query", None)
         params.pop("TableName", None)
@@ -50,7 +50,7 @@ class DynamoBase:
     def update_item(cls, **kwargs):
         query = kwargs["query"]
         Item = kwargs["Item"]
-        expression = cls._expression(Item)
+        expression = cls._UpdateExpression(Item)
         response = cls._table().update_item(
             Key=query,
             UpdateExpression="SET " + (", ".join(expression["Expression"])),
@@ -71,8 +71,42 @@ class DynamoBase:
         tb = dynamodb.Table(cls.table_name)
         return tb
 
+    # EQ | LE | LT | GE | GT | BEGINS_WITH | BETWEEN
+    # = | <= | < | >= | > | begins_with | between
     @classmethod
-    def _expression(cls, dct):
+    def _KeyConditionExpression(cls, dct):
+        Expression = []
+        ExpressionAttributeNames = {}
+        ExpressionAttributeValues = {}
+        for key in dct:
+            if type(dct[key]) is not dict:
+                dct[key] = {"=": dct[key]}
+            for op, vv in dct[key].items():
+                # expressions
+                if op == "begins_with":
+                    Expression.append("begins_with(#{}, :{})".format(key, key))
+                elif op == "between":
+                    Expression.append("#{} between :{}1 and :{}2".format(key, key, key))
+                else:
+                    Expression.append("#{} {} :{}".format(key, op, key))
+                # keys
+                ExpressionAttributeNames["#" + key] = key
+                # values
+                if op == "between":
+                    vv.sort()
+                    ExpressionAttributeValues[":" + key + "1"] = vv[0]
+                    ExpressionAttributeValues[":" + key + "2"] = vv[1]
+                else:
+                    ExpressionAttributeValues[":" + key] = vv
+
+        return {
+            "Expression": Expression,
+            "ExpressionAttributeNames": ExpressionAttributeNames,
+            "ExpressionAttributeValues": ExpressionAttributeValues,
+        }
+
+    @classmethod
+    def _UpdateExpression(cls, dct):
         Expression = []
         ExpressionAttributeNames = {}
         ExpressionAttributeValues = {}
