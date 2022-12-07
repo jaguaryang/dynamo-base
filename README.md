@@ -130,6 +130,16 @@ res = Article.delete_item(query={"_id": "123"})
 print(7, res)
 ```
 
+```
+res = Article.get_items(
+    IndexName="ix_status",
+    query={"status": 1},
+    ProjectionExpression="title, #url",
+    ExpressionAttributeNames={"#url": "url"},
+    ScanIndexForward=True,
+)
+```
+
 # APIs
 
 All "GET" operations support: = | <= | < | >= | > | begins_with | between

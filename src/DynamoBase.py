@@ -23,6 +23,11 @@ class DynamoBase:
         params = kwargs.copy()
         params.pop("query", None)
         params.pop("TableName", None)
+        if "ExpressionAttributeNames" in kwargs:
+            expression["ExpressionAttributeNames"] = {
+                **expression["ExpressionAttributeNames"],
+                **kwargs["ExpressionAttributeNames"],
+            }
         params.pop("KeyConditionExpression", None)
         params.pop("ExpressionAttributeNames", None)
         params.pop("ExpressionAttributeValues", None)
